@@ -15,7 +15,7 @@
                 <tbody>
                     <tr class="align-middle">
                         <td>2</td>
-                        <td>Mark Zukenberg</td>
+                        <td>Alicia</td>
                         <td></td>
                         <td><a href="" class="btn btn-success">tambah data</a></td>
                     </tr>
