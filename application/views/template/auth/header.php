@@ -19,7 +19,6 @@
 <body class="text-center">
 
     <main class="form-signin">
-        <form action="<?= site_url(); ?>auth/login" method="POST">
             <img class="mb-4" src="<?= base_url() ?>/assets/kesehatan-icon.png" alt="" width="72" height="72">
             
             

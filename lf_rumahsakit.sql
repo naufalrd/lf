@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Mar 2021 pada 13.17
+-- Waktu pembuatan: 26 Mar 2021 pada 09.13
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.4.8
 
@@ -32,6 +32,13 @@ CREATE TABLE `admin` (
   `id_admin` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `admin`
+--
+
+INSERT INTO `admin` (`username_admin`, `id_admin`) VALUES
+('admin', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -43,6 +50,16 @@ CREATE TABLE `akun` (
   `password` varchar(255) NOT NULL,
   `level` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `akun`
+--
+
+INSERT INTO `akun` (`username`, `password`, `level`) VALUES
+('admin', '$2y$10$lBmcQFm5ugnUkllW3Ikd0OZE70g0SRnTrrjs9rpT8wSz/OdUgYrB.', 'admin'),
+('dokter', '$2y$10$PrRToUYYehwwQ6RwCiuvFe6jrdHcLldj2ojKzy46KV7g6jUo0gUd2', 'dokter'),
+('pasien', '$2y$10$srJfT/3ULJxfUKOHJq2LvOi6xvPis0J/D8Jq.UBYPz9N843SsgUSK', 'pasien'),
+('perawat', '$2y$10$ilaV8h8Vfpd6dfgRz9NmhOHn7gtdtyK9JImpNzmSRxTFK2yws5DE.', 'perawat');
 
 -- --------------------------------------------------------
 
@@ -71,6 +88,13 @@ CREATE TABLE `dokter` (
   `status` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `dokter`
+--
+
+INSERT INTO `dokter` (`username_dokter`, `nama_dokter`, `notelp_dokter`, `id_dokter`, `nama_poli`, `status`) VALUES
+('dokter', 'dokter', '087', 1, 'jantung', 'aktif');
+
 -- --------------------------------------------------------
 
 --
@@ -85,6 +109,13 @@ CREATE TABLE `pasien` (
   `id_pasien` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `pasien`
+--
+
+INSERT INTO `pasien` (`username_pasien`, `nama_pasien`, `umur_pasien`, `alamat_pasien`, `id_pasien`) VALUES
+('pasien', 'Pasien Tampan', '12', 'Rumah Pasien', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -97,6 +128,13 @@ CREATE TABLE `perawat` (
   `notelp_perawat` varchar(10) NOT NULL,
   `id_perawat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `perawat`
+--
+
+INSERT INTO `perawat` (`username_perawat`, `nama_perawat`, `notelp_perawat`, `id_perawat`) VALUES
+('perawat', 'perawat', '0877', 1);
 
 -- --------------------------------------------------------
 
@@ -175,25 +213,25 @@ ALTER TABLE `rekam_medis`
 -- AUTO_INCREMENT untuk tabel `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `dokter`
 --
 ALTER TABLE `dokter`
-  MODIFY `id_dokter` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_dokter` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `id_pasien` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pasien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `perawat`
 --
 ALTER TABLE `perawat`
-  MODIFY `id_perawat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_perawat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

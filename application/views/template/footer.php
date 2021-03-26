@@ -1,4 +1,3 @@
-
 </div>
 <!-- End of Content -->
 </div>
@@ -12,11 +11,11 @@
             <div class="modal-body">
                 <div class="row p-0 text-light">
                     <div class="col-2 p-2">
-                        <img src="assets/upload/image/user/profile-picture-1.jpg" class="w-100 rounded-circle">
+                        <img src="<?= base_url(); ?>/assets/kesehatan-icon.png" class="w-100 rounded-circle">
                     </div>
                     <div class="col-8 poppins-md">
-                        Hi, Danang <br>
-                        <a href="#" class="btn btn-warning btn-ss mt-1"><span class="fas fa-sign-out-alt">
+                        Hi, <?= $this->session->userdata('username'); ?> <br>
+                        <a href="<?= site_url('auth/logout'); ?>" class="btn btn-warning btn-ss mt-1"><span class="fas fa-sign-out-alt">
                                 &nbsp;</span>Sign Out</a>
                         <a href="#" class="btn btn-warning btn-ss mt-1"><span class="far fa-user-circle">
                                 &nbsp;</span>My Profile</a>
@@ -29,38 +28,23 @@
                 </div>
                 <div class="row">
                     <ul class="navbar-nav mb-lg-0 my-3 text-small">
-                        <li class="nav-item p-1">
-                            <a class="nav-link active px-4 py-2 rounded-3 text-default" aria-current="page" href="#"><span class="fas fa-chart-pie">&nbsp;&nbsp;</span> Overview</a>
+                        <li class="nav-item p-1<?= $this->session->userdata('level') != 'admin' ? ' d-none' : ''; ?>">
+                            <a class="<?= $this->uri->segment(1) == 'admin' && $this->uri->segment(2) == '' ? 'active' : '' ?> nav-link px-4 py-2 rounded-3 text-default" aria-current="page" href="<?= site_url(); ?>admin"><span class="fas fa-users">&nbsp;&nbsp;</span> User</a>
                         </li>
-                        <li class="nav-item p-1">
-                            <a class="nav-link px-4 py-2 rounded-3 text-default" aria-current="page" href="#"><span class="fas fa-cog">&nbsp;&nbsp;</span> Settings</a>
+                        <li class="nav-item p-1<?= $this->session->userdata('level') != 'admin' ? ' d-none' : ''; ?>">
+                            <a class="<?= $this->uri->segment(2) == 'jadwal' ? 'active' : '' ?> nav-link px-4 py-2 rounded-3 text-default" aria-current="page" href="<?= site_url(); ?>admin/jadwal"><span class="fas fa-calendar">&nbsp;&nbsp;</span> Jadwal</a>
                         </li>
-                        <li class="nav-item p-1">
-                            <a class="btn nav-link border-0 w-100 text-start px-4 py-1 mb-0" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                <div class="row text-default">
-                                    <div class="col-10 text-small">
-                                        <span class="fas fa-table text-small">&nbsp;&nbsp;</span> Baru
-                                    </div>
-                                    <div class="col-2 p-0 text-end">
-                                        <span class="fas fa-chevron-right text-small"></span>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="collapse" id="collapseExample">
-                                <div class="border-0 mt-0">
-                                    <ul class="navbar-nav mb-lg-0 p-0">
-                                        <li class="nav-item p-2">
-                                            <a class="nav-link px-5 py-2 rounded-3 text-default" aria-current="page" href="#">Overview</a>
-                                        </li>
-                                        <li class="nav-item p-2">
-                                            <a class="nav-link px-5 py-2 rounded-3 text-default" aria-current="page" href="#">Settings</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                        <!-- Dokter -->
+                        <li class="nav-item p-1<?= $this->session->userdata('level') != 'dokter' ? ' d-none' : ''; ?>">
+                            <a class="<?= $this->uri->segment(1) == 'dokter' && $this->uri->segment(2) == '' ? 'active' : '' ?> nav-link px-4 py-2 rounded-3 text-default" aria-current="page" href="<?= site_url(); ?>dokter"><span class="fas fa-chart-pie">&nbsp;&nbsp;</span> Diagnosa</a>
                         </li>
-                        <li class="nav-item p-1">
-                            <a class="nav-link px-4 py-2 rounded-3 text-default" aria-current="page" href="#"><span class="fas fa-cog">&nbsp;&nbsp;</span> Settings</a>
+                        <!-- Perawat -->
+                        <li class="nav-item p-1<?= $this->session->userdata('level') != 'perawat' ? ' d-none' : ''; ?>">
+                            <a class="<?= $this->uri->segment(1) == 'perawat' && $this->uri->segment(2) == '' ? 'active' : '' ?> nav-link px-4 py-2 rounded-3 text-default" aria-current="page" href="<?= site_url(); ?>perawat"><span class="fas fa-user">&nbsp;&nbsp;</span> Panggil</a>
+                        </li>
+                        <!-- Pasien -->
+                        <li class="nav-item p-1<?= $this->session->userdata('level') != 'pasien' ? ' d-none' : ''; ?>">
+                            <a class="<?= $this->uri->segment(1) == 'pasien' && $this->uri->segment(2) == '' ? 'active' : '' ?> nav-link px-4 py-2 rounded-3 text-default" aria-current="page" href="<?= site_url(); ?>pasien"><span class="fas fa-chart-bar">&nbsp;&nbsp;</span> Rekam Medis</a>
                         </li>
                     </ul>
                 </div>
@@ -71,9 +55,9 @@
 <!-- Optional JavaScript; choose one of the two! -->
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="<?= base_url() ;?>/assets/vendor/bs5-beta/js/bootstrap.bundle.min.js"></script>
-<script src="<?= base_url() ;?>/assets/vendor/chartist/dist/chartist.min.js"></script>
-<script src="<?= base_url() ;?>/assets/js/dashboard.js"></script>
+<script src="<?= base_url(); ?>/assets/vendor/bs5-beta/js/bootstrap.bundle.min.js"></script>
+<script src="<?= base_url(); ?>/assets/vendor/chartist/dist/chartist.min.js"></script>
+<script src="<?= base_url(); ?>/assets/js/dashboard.js"></script>
 <!-- Option 2: Separate Popper and Bootstrap JS -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
         integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"

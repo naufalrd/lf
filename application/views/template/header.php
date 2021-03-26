@@ -11,7 +11,8 @@
     <link type="text/css" rel="stylesheet" href="<?= base_url(); ?>/assets/css/dashboard.css">
     <link type="text/css" href="<?= base_url(); ?>/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url(); ?>/assets/vendor/chartist/dist/chartist.min.css">
-    <title>Dashboard Admin</title>
+    <link rel="icon" type="image/png" href="<?= base_url() ;?>/assets/kesehatan-icon.png" />
+    <title class="text-uppercase">Dashboard - <?= $this->uri->segment(1); ?></title>
 </head>
 
 <body>
@@ -27,23 +28,23 @@
                 </div>
                 <ul class="navbar-nav mb-lg-0 my-3">
                     <!-- Admin -->
-                    <li class="nav-item p-1">
-                        <a class="<?= $this->uri->segment(1) == 'admin' && $this->uri->segment(2) == '' ? 'active': '' ?> nav-link px-4 py-2 rounded-3 text-default" aria-current="page" href="<?= site_url() ;?>admin"><span class="fas fa-users">&nbsp;&nbsp;</span> User</a>
+                    <li class="nav-item p-1<?= $this->session->userdata('level') != 'admin' ? ' d-none' : ''; ?>">
+                        <a class="<?= $this->uri->segment(1) == 'admin' && $this->uri->segment(2) == '' ? 'active' : '' ?> nav-link px-4 py-2 rounded-3 text-default" aria-current="page" href="<?= site_url(); ?>admin"><span class="fas fa-users">&nbsp;&nbsp;</span> User</a>
                     </li>
-                    <li class="nav-item p-1">
-                        <a class="<?= $this->uri->segment(2) == 'jadwal' ? 'active': '' ?> nav-link px-4 py-2 rounded-3 text-default" aria-current="page" href="<?= site_url() ;?>admin/jadwal"><span class="fas fa-calendar">&nbsp;&nbsp;</span> Jadwal</a>
+                    <li class="nav-item p-1<?= $this->session->userdata('level') != 'admin' ? ' d-none' : ''; ?>">
+                        <a class="<?= $this->uri->segment(2) == 'jadwal' ? 'active' : '' ?> nav-link px-4 py-2 rounded-3 text-default" aria-current="page" href="<?= site_url(); ?>admin/jadwal"><span class="fas fa-calendar">&nbsp;&nbsp;</span> Jadwal</a>
                     </li>
                     <!-- Dokter -->
-                    <li class="nav-item p-1">
-                        <a class="<?= $this->uri->segment(1) == 'dokter' && $this->uri->segment(2) == '' ? 'active': '' ?> nav-link px-4 py-2 rounded-3 text-default" aria-current="page" href="<?= site_url() ;?>dokter"><span class="fas fa-chart-pie">&nbsp;&nbsp;</span> Diagnosa</a>
+                    <li class="nav-item p-1<?= $this->session->userdata('level') != 'dokter' ? ' d-none' : ''; ?>">
+                        <a class="<?= $this->uri->segment(1) == 'dokter' && $this->uri->segment(2) == '' ? 'active' : '' ?> nav-link px-4 py-2 rounded-3 text-default" aria-current="page" href="<?= site_url(); ?>dokter"><span class="fas fa-chart-pie">&nbsp;&nbsp;</span> Diagnosa</a>
                     </li>
                     <!-- Perawat -->
-                    <li class="nav-item p-1">
-                        <a class="<?= $this->uri->segment(1) == 'perawat' && $this->uri->segment(2) == '' ? 'active': '' ?> nav-link px-4 py-2 rounded-3 text-default" aria-current="page" href="<?= site_url() ;?>perawat"><span class="fas fa-user">&nbsp;&nbsp;</span> Panggil</a>
+                    <li class="nav-item p-1<?= $this->session->userdata('level') != 'perawat' ? ' d-none' : ''; ?>">
+                        <a class="<?= $this->uri->segment(1) == 'perawat' && $this->uri->segment(2) == '' ? 'active' : '' ?> nav-link px-4 py-2 rounded-3 text-default" aria-current="page" href="<?= site_url(); ?>perawat"><span class="fas fa-user">&nbsp;&nbsp;</span> Panggil</a>
                     </li>
                     <!-- Pasien -->
-                    <li class="nav-item p-1">
-                        <a class="<?= $this->uri->segment(1) == 'pasien' && $this->uri->segment(2) == '' ? 'active': '' ?> nav-link px-4 py-2 rounded-3 text-default" aria-current="page" href="<?= site_url() ;?>pasien"><span class="fas fa-chart-bar">&nbsp;&nbsp;</span> Rekam Medis</a>
+                    <li class="nav-item p-1<?= $this->session->userdata('level') != 'pasien' ? ' d-none' : ''; ?>">
+                        <a class="<?= $this->uri->segment(1) == 'pasien' && $this->uri->segment(2) == '' ? 'active' : '' ?> nav-link px-4 py-2 rounded-3 text-default" aria-current="page" href="<?= site_url(); ?>pasien"><span class="fas fa-chart-bar">&nbsp;&nbsp;</span> Rekam Medis</a>
                     </li>
                 </ul>
             </div>
@@ -79,16 +80,12 @@
                                         </li>
                                         <li class="nav-item dropdown me-0">
                                             <a class="bg-transparent nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <img src="assets/upload/image/user/profile-picture-1.jpg" alt="profile-picture" class="rounded-circle img-profile-thumbnail">
-                                                <span class="fs-7 text-grey d-lg-inline d-md-inline d-sm-none"> Dadang
-                                                    Nurjaman</span>
+                                                <img src="<?= base_url() ;?>/assets/kesehatan-icon.png" alt="profile-picture" class="rounded-circle img-profile-thumbnail">
+                                                <span class="fs-7 text-grey d-lg-inline d-md-inline d-sm-none"><?= $this->session->userdata('username'); ?></span>
                                             </a>
                                             <div class="dropdown-menu shadow rounded w-100 border-0" aria-labelledby="navbarDropdown">
                                                 <a class="dropdown-item fs-7 text-grey" href="#"><span class="far fa-user-circle">&nbsp;</span> My Profile</a>
-                                                <a class="dropdown-item fs-7 text-grey" href="#"><span class="fas fa-cog">&nbsp;</span> Settings</a>
-                                                <a class="dropdown-item fs-7 text-grey" href="#"><span class="fas fa-envelope-open-text">&nbsp;</span> Messages</a>
-                                                <a class="dropdown-item fs-7 text-grey" href="#"><span class="fas fa-user-shield">&nbsp;</span>Support</a>
-                                                <a class="dropdown-item fs-7 text-grey" href="#"><span class="fas fa-sign-out-alt text-danger">&nbsp;</span> Logout</a>
+                                                <a class="dropdown-item fs-7 text-grey" href="<?= site_url('auth/logout') ;?>"><span class="fas fa-sign-out-alt text-danger">&nbsp;</span> Logout</a>
                                             </div>
                                         </li>
                                     </span>
