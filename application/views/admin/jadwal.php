@@ -12,12 +12,22 @@
                     </tr>
                 </thead>
                 <tbody>
+                <?php $no = 1; foreach ($dokter as $a) :?>
                     <tr class="align-middle">
-                        <th scope="row">1</th>
-                        <td>Mark Prajiwaksono</td>
-                        <td>Poli Jantung</td>
-                        <td><a href="" class="btn btn-success">Aktif</a></td>
+                        <th scope="row"><?= $no++ ?></th>
+                        <td><?=$a['nama_dokter']?></td>
+                        <td><?=$a['nama_poli']?></td>
+                        <td>
+                            <?php if($a['status']=='aktif'){
+                                echo anchor('admin/ganti_jadi_nonaktif/'.$a['id_dokter'],
+                                '<button class="btn btn-success">Aktif</button>');
+                            }else{
+                                echo anchor('admin/ganti_jadi_aktif/'.$a['id_dokter'],
+                                '<button class="btn btn-danger">Non-Aktif</button>');
+                            }?>
+                        </td>
                     </tr>
+                <?php endforeach ?>
                 </tbody>
             </table>
         </div>
