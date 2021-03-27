@@ -1,0 +1,47 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Pasien_model extends CI_Model
+{
+
+    //ambil id pasien
+    public function get_pasienId($username){
+        $this->db->select('id_pasien');
+        $this->db->from('pasien');
+        $this->db->where('username_pasien', $username);
+        return $this->db->get()->result();
+    }
+
+    public function get_antrian($id_pasien){
+        $this->db->select('*');
+        $this->db->from('antrian');
+        $this->db->join('pasien',"'$id_pasien' = pasien.id_pasien");
+        $this->db->join('dokter','antrian.id_dokter = dokter.id_dokter');
+        return $this->db->get()->result_array();
+    }
+
+    public function get_diagnosa($id_pasien){
+        $this->db->select('*');
+        $this->db->from('rekam_medis');
+        $this->db->join('pasien',"'$id_pasien' = pasien.id_pasien");
+        $this->db->join('dokter','rekam_medis.id_dokter = dokter.id_dokter');
+        $this->db->join('perawat','rekam_medis.id_perawat = perawat.id_perawat');
+        return $this->db->get()->result_array();
+    }
+
+    public function get_lastAntri(){
+        $this->db->select_max('no_antri');
+        $this->db->from('antrian');
+        return $this->db->get()->result();
+    }
+
+    public function get_dokter(){
+        return $this->db->get('dokter')->result_array();
+    }
+    
+    public function register($table, $data)
+    {
+        return $this->db->insert($table, $data);
+    }
+
+}

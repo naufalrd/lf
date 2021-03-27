@@ -26,8 +26,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="<?= base_url('admin'); ?>">Lihat Template</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="<?= base_url('auth/login'); ?>">Login</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="<?= site_url('auth/register'); ?>">Daftar</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="<?= site_url('auth/login'); ?>">Login</a></li>
                     </ul>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                                 <i class="fas fa-map-marked-alt text-primary mb-2"></i>
                                 <h4 class="text-uppercase m-0">Address</h4>
                                 <hr class="my-4" />
-                                <div class="small text-black-50">4923 Market Street, Orlando FL, Jakara Selatan</div>
+                                <div class="small text-black-50">4923 Market Street, Orlando FL, Jakarta Selatan</div>
                             </div>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
             </div>
         </section>
         <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container">Copyright © <i>LF Team</i> 2020</div></footer>
+        <footer class="footer bg-black small text-center text-white-50"><div class="container">Copyright © <i>LF Team</i> 2021</div></footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
