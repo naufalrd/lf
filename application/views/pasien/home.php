@@ -2,23 +2,25 @@
 <div class="row mt-5 mx-5 p-5 shadow bg-white rounded">
     <h1 class="text-center">Tabel Antrian</h1>
     <div class="container text-center overflow-auto">
-        <a href="" class="btn btn-outline-dark mb-5">daftar</a>
+        <a href="<?= site_url('pasien/antri') ?>" class="btn btn-outline-dark mb-5">daftar</a>
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Poli Tujuan</th>
-                    <th scope="col">Tensi</th>
+                    <th scope="col">Nama Dokter</th>
                     <th scope="col">Nomor Antrian</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
+            <?php $no = 1;foreach ($antrian as $pasien) :?>
                 <tr class="align-middle">
-                    <td>Poli Hati</td>
-                    <td></td>
-                    <td>2</td>
+                    <td><?= $pasien['nama_poli'] ?></td>
+                    <td><?= $pasien['nama_dokter'] ?> </td>
+                    <td><?= $pasien['no_antri'] ?></td>
                     <td><a href="" class="btn btn-success">lihat detail</a></td>
                 </tr>
+                <?php endforeach ?>
             </tbody>
         </table>
     </div>
@@ -37,13 +39,15 @@
                 </tr>
             </thead>
             <tbody>
+            <?php $no = 1;foreach ($diagnosa as $pasien1) :?>
                 <tr class="align-middle">
-                    <td>25-03-2021</td>
-                    <td>Sakit Hati</td>
-                    <td>Obat Hati</td>
-                    <td>110/80</td>
+                    <td><?= $pasien1['tanggal'] ?></td>
+                    <td><?= $pasien1['diagnosis'] ?></td>
+                    <td><?= $pasien1['obat'] ?></td>
+                    <td><?= $pasien1['tensi'] ?></td>
                     <td><a href="" class="btn btn-success">lihat detail</a></td>
                 </tr>
+                <?php endforeach ?>
             </tbody>
         </table>
     </div>
