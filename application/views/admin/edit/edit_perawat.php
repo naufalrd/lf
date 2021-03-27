@@ -15,19 +15,21 @@
                 </div>
             </div>
             <?php } ?>
-            <form action="<?= site_url(); ?>admin/check_register_admin" method="post">
+            <?php foreach($perawat as $a) :?>
+            <form action="<?= site_url(); ?>admin/update_perawat/<?=$a->id_perawat?>" method="post">
                 <div class="row">
                     <div class="form-group col-12 mb-3">
-                        <label class="form-controll visually-hidden">Username</label>
-                        <input type="text" name="username_admin" class="form-control" autocomplete="off" placeholder="Username" required>
+                        <label class="form-controll visually-hidden">Nama_perawat</label>
+                        <input type="text" name="nama_perawat" class="form-control" autocomplete="off" placeholder="Nama perawat" value="<?= $a->nama_perawat ?>" required>
                     </div>
                     <div class="form-group col-12 mb-3">
-                        <label class="form-controll visually-hidden">Password</label>
-                        <input type="password" name="password_admin" class="form-control" autocomplete="off" placeholder="Password" required>
+                        <label class="form-controll visually-hidden">Notelp_perawat</label>
+                        <input type="text" name="notelp_perawat" class="form-control" autocomplete="off" placeholder="No Telp" value="<?= $a->notelp_perawat ?>" required>
                     </div>
                     <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
                 </div>
             </form>
+            <?php endforeach ?>
         </div>
     </div>
 </div>

@@ -15,31 +15,25 @@
                 </div>
             </div>
             <?php } ?>
-            <form action="<?= site_url(); ?>admin/check_register_dokter" method="post">
+            <?php foreach($dokter as $a) :?>
+            <form action="<?= site_url(); ?>admin/update_dokter/<?=$a->id_dokter?>" method="post">
                 <div class="row">
                     <div class="form-group col-12 mb-3">
-                        <label class="form-controll visually-hidden">Username</label>
-                        <input type="text" name="username_dokter" class="form-control" autocomplete="off" placeholder="Username" required>
-                    </div>
-                    <div class="form-group col-12 mb-3">
                         <label class="form-controll visually-hidden">Nama_dokter</label>
-                        <input type="text" name="nama_dokter" class="form-control" autocomplete="off" placeholder="Nama Dokter" required>
+                        <input type="text" name="nama_dokter" class="form-control" autocomplete="off" placeholder="Nama Dokter"  value="<?= $a->nama_dokter ?>" required>
                     </div>
                     <div class="form-group col-12 mb-3">
                         <label class="form-controll visually-hidden">Notelp_dokter</label>
-                        <input type="text" name="notelp_dokter" class="form-control" autocomplete="off" placeholder="No Telp" required>
+                        <input type="text" name="notelp_dokter" class="form-control" autocomplete="off" placeholder="No Telp"  value="<?= $a->notelp_dokter ?>" required>
                     </div>
                     <div class="form-group col-12 mb-3">
                         <label class="form-controll visually-hidden">Poli</label>
-                        <input type="text" name="poli" class="form-control" autocomplete="off" placeholder="Poli" required>
+                        <input type="text" name="poli" class="form-control" autocomplete="off" placeholder="Poli"  value="<?= $a->nama_poli ?>" required>
                     </div>
-                    <div class="form-group col-12 mb-3">
-                        <label class="form-controll visually-hidden">Password</label>
-                        <input type="password" name="password_dokter" class="form-control" autocomplete="off" placeholder="Password" required>
-                    </div>
-                    <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">Update</button>
                 </div>
             </form>
+            <?php endforeach ?>
         </div>
     </div>
 </div>
