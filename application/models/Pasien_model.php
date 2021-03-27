@@ -44,4 +44,23 @@ class Pasien_model extends CI_Model
         return $this->db->insert($table, $data);
     }
 
+    public function get_antrianbyno($no_antri){
+        $this->db->select('*');
+        $this->db->from('antrian');
+        $this->db->join('pasien',"antrian.id_pasien = pasien.id_pasien");
+        $this->db->join('dokter','antrian.id_dokter = dokter.id_dokter');
+        $this->db->where('no_antri', $no_antri);
+        return $this->db->get()->result_array();
+    }
+
+    public function get_diagnosabyid($id_rekammedis){
+        $this->db->select('*');
+        $this->db->from('rekam_medis');
+        $this->db->join('pasien',"rekam_medis.id_pasien = pasien.id_pasien");
+        $this->db->join('dokter','rekam_medis.id_dokter = dokter.id_dokter');
+        $this->db->join('perawat','rekam_medis.id_perawat = perawat.id_perawat');
+        $this->db->where('id_rekammedis', $id_rekammedis);
+        return $this->db->get()->result_array();
+    }
+
 }
