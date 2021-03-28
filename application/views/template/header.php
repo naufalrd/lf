@@ -23,7 +23,7 @@
             <div class="position-fixed col-xl-2 col-lg-3 col-md-3 col-sm-4 d-none d-sm-block d-md-block d-lg-block bg-indigo h100vh border-end border-0 z-1">
                 <div class="p-1 mt-2 text-center">
                     <div class="d-flex flex-row place-center">
-                        <h3 class="dashboard-title poppins-md text-uppercase">Dashboadminssss</h3>
+                        <h3 class="dashboard-title poppins-md text-uppercase">RS Sehat Selalu</h3>
                     </div>
                 </div>
                 <ul class="navbar-nav mb-lg-0 my-3">
