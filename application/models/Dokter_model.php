@@ -6,16 +6,25 @@ class Dokter_model extends CI_Model{
 		$this->db->from('rekam_medis');
 		$this->db->join('pasien', 'pasien.id_pasien = rekam_medis.id_pasien');
         $this->db->join('dokter', 'dokter.id_dokter = rekam_medis.id_dokter');
-        $this->db->join('antrian', 'antrian.id_pasien = pasien.id_pasien');
-        return $this -> db -> where('rekam_medis.id_pasien',$id) -> get() -> result_array();
+        return $this -> db -> where('rekam_medis.id_rekammedis',$id) -> get() -> result_array();
     }
-
+// atas
     public function search_pasien(){
         $this->db->select('*');
 		$this->db->from('rekam_medis');
 		$this->db->join('pasien', 'pasien.id_pasien = rekam_medis.id_pasien');
         $this->db->join('dokter', 'dokter.id_dokter = rekam_medis.id_dokter');
-        $this->db->where('rekam_medis.diagnosis', NULL);
+        $this->db->where('rekam_medis.obat', '');
+        $this->db->order_by('rekam_medis.id_rekammedis', 'asc');
+        return $this->db->get()->result_array();
+    }
+// bawah
+    public function data_pasien(){
+        $this->db->select('*');
+		$this->db->from('rekam_medis');
+		$this->db->join('pasien', 'pasien.id_pasien = rekam_medis.id_pasien');
+        $this->db->join('dokter', 'dokter.id_dokter = rekam_medis.id_dokter');
+        $this->db->where('rekam_medis.obat !=', '');
         $this->db->order_by('rekam_medis.id_rekammedis', 'asc');
         return $this->db->get()->result_array();
     }
@@ -26,18 +35,9 @@ class Dokter_model extends CI_Model{
 		$this->db->join('pasien', 'pasien.id_pasien = rekam_medis.id_pasien');
         $this->db->join('dokter', 'dokter.id_dokter = rekam_medis.id_dokter');
         $this->db->join('perawat', 'perawat.id_perawat = rekam_medis.id_perawat');
-        return $this -> db -> where('rekam_medis.id_pasien',$id) -> get() -> result_array();
+        return $this -> db -> where('rekam_medis.id_rekammedis',$id) -> get() -> result_array();
     }
 
-    public function data_pasien(){
-        $this->db->select('*');
-		$this->db->from('rekam_medis');
-		$this->db->join('pasien', 'pasien.id_pasien = rekam_medis.id_pasien');
-        $this->db->join('dokter', 'dokter.id_dokter = rekam_medis.id_dokter');
-        $this->db->where('rekam_medis.diagnosis !=', NULL);
-        $this->db->order_by('rekam_medis.id_rekammedis', 'asc');
-        return $this->db->get()->result_array();
-    }
 
     public function editPostQuery($id){
         $this->db->select('id_dokter');
@@ -56,7 +56,6 @@ class Dokter_model extends CI_Model{
             
         );
         $this -> db -> where('id_rekammedis',$id) -> update('rekam_medis',$data);
-        redirect(base_url());
     }
 
     public function update_data()
@@ -79,6 +78,5 @@ class Dokter_model extends CI_Model{
 
     public function deletePostQuery($id){
         $this -> db -> where('id_pasien',$id) -> delete('rekam_medis');
-        redirect(base_url());
     }
 }

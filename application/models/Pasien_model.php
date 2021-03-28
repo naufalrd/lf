@@ -43,7 +43,7 @@ class Pasien_model extends CI_Model
     {
         return $this->db->insert($table, $data);
     }
-
+    
     public function get_antrianbyno($no_antri){
         $this->db->select('*');
         $this->db->from('antrian');

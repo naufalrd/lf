@@ -47,7 +47,12 @@ class Pasien extends CI_Controller {
 			'no_antri' => $no_antrian,
 			'id_dokter' => $id_dokter,
 		];
+		$data2 = [
+			'id_pasien' => $id_pasien,
+			'id_dokter' => $id_dokter,
+		];
 		$insert = $this->pasien_model->register("antrian", $data);
+		$insert = $this->pasien_model->register("rekam_medis", $data2);
 		if ($insert) {
 			echo '<script>alert("Berhasil Mengantri");window.location.href="' . base_url('index.php/pasien') . '";</script>';
 		}

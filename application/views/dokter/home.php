@@ -26,7 +26,7 @@
                         <td><?= $data['diagnosis'] ?></td>
                         <td><?= $data['obat'] ?></td>
                         <td><?= $data['tensi'] ?></td>
-                        <td><?= $pasien['tanggal'] ?></td>
+                        <td><?= $data['tanggal'] ?></td>
                         <td><a href="<?= base_url() ?>Dokter/diagnosa/<?= $data['id_rekammedis'] ?>" class="btn btn-success">edit</a> <a href="<?= base_url() ?>Dokter/DeletePost/<?= $data['id_pasien'] ?>" class="btn btn-danger">delete</a></td>
                     </tr>
                     <?php endforeach ?>
@@ -63,7 +63,7 @@
                         <td><?= $pasien['obat'] ?></td>
                         <td><?= $pasien['tensi'] ?></td>
                         <td><?= $pasien['tanggal'] ?></td>
-                        <td><a href="<?= base_url() ?>Dokter/data_pasien/<?= $pasien['id_pasien'] ?>" class="btn btn-success">edit</a> <a href="<?= base_url() ?>Dokter/DeletePost/<?= $pasien['id_pasien'] ?>" class="btn btn-danger">delete</a></td>
+                        <td><a href="<?= base_url() ?>Dokter/data_pasien/<?= $pasien['id_rekammedis'] ?>" class="btn btn-success">edit</a> <a href="<?= base_url() ?>Dokter/DeletePost/<?= $pasien['id_pasien'] ?>" class="btn btn-danger">delete</a></td>
                     </tr>
                     <?php endforeach ?>
                     <?php endif ?>

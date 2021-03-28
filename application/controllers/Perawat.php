@@ -18,7 +18,7 @@ class Perawat extends CI_Controller {
 	{
 		$data['rekam_medis'] = $this->perawat_model->search_pasien();
 		$data['data_pasien'] = $this->perawat_model->data_pasien();
-		#var_dump($data);
+		// var_dump($data);
 		#die();
 		$this->load->view('template/header.php');
 		$this->load->view('perawat/home.php',$data);
@@ -28,7 +28,7 @@ class Perawat extends CI_Controller {
 	public function tensi($id)
 	{
 		$data['rekam_medis'] = $this->perawat_model->search_id($id);
-		var_dump($data);
+		// var_dump($data);
 		$this->load->view('template/header.php');
 		$this->load->view('perawat/tensi.php',$data);
 		$this->load->view('template/footer.php');
@@ -37,7 +37,7 @@ class Perawat extends CI_Controller {
 	public function data_pasien($id)
 	{
 		$data['data_pasien'] = $this->perawat_model->search_data($id);
-		var_dump($data);
+		// var_dump($data);
 		$this->load->view('template/header.php');
 		$this->load->view('perawat/data_pasien.php',$data);
 		$this->load->view('template/footer.php');

@@ -7,7 +7,6 @@ class Perawat_model extends CI_Model
 		$this->db->from('rekam_medis');
 		$this->db->join('pasien', 'pasien.id_pasien = rekam_medis.id_pasien');
         $this->db->join('dokter', 'dokter.id_dokter = rekam_medis.id_dokter');
-        $this->db->join('perawat', 'perawat.id_perawat = rekam_medis.id_perawat');
         $this->db->join('antrian', 'antrian.id_pasien = pasien.id_pasien');
         return $this -> db -> where('rekam_medis.id_pasien',$id) -> get() -> result_array();
         // return $this->db->get()->result_array();
@@ -22,7 +21,8 @@ class Perawat_model extends CI_Model
 		$this->db->join('pasien', 'pasien.id_pasien = rekam_medis.id_pasien');
         $this->db->join('dokter', 'dokter.id_dokter = rekam_medis.id_dokter');
         $this->db->join('antrian', 'antrian.id_pasien = pasien.id_pasien');
-        $this->db->where('rekam_medis.diagnosis', NULL);
+        $this->db->where('rekam_medis.diagnosis', 0);
+        $this->db->where('rekam_medis.tensi', 0);
         $this->db->order_by('antrian.no_antri', 'asc');
         return $this->db->get()->result_array();
     }
@@ -32,7 +32,6 @@ class Perawat_model extends CI_Model
 		$this->db->from('rekam_medis');
 		$this->db->join('pasien', 'pasien.id_pasien = rekam_medis.id_pasien');
         $this->db->join('dokter', 'dokter.id_dokter = rekam_medis.id_dokter');
-        $this->db->join('perawat', 'perawat.id_perawat = rekam_medis.id_perawat');
         return $this -> db -> where('rekam_medis.id_pasien',$id) -> get() -> result_array();
     }
 
@@ -41,7 +40,8 @@ class Perawat_model extends CI_Model
 		$this->db->from('rekam_medis');
 		$this->db->join('pasien', 'pasien.id_pasien = rekam_medis.id_pasien');
         $this->db->join('dokter', 'dokter.id_dokter = rekam_medis.id_dokter');
-        $this->db->where('rekam_medis.diagnosis !=', NULL);
+        $this->db->where('rekam_medis.diagnosis', 0);
+        $this->db->where('rekam_medis.tensi !=', 0);
         $this->db->order_by('rekam_medis.id_rekammedis', 'asc');
         return $this->db->get()->result_array();
     }
