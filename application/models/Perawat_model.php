@@ -8,6 +8,7 @@ class Perawat_model extends CI_Model
 		$this->db->join('pasien', 'pasien.id_pasien = rekam_medis.id_pasien');
         $this->db->join('dokter', 'dokter.id_dokter = rekam_medis.id_dokter');
         $this->db->join('antrian', 'antrian.id_pasien = pasien.id_pasien');
+        $this->db->where('rekam_medis.tensi', '');
         return $this -> db -> where('rekam_medis.id_pasien',$id) -> get() -> result_array();
         // return $this->db->get()->result_array();
        //$query = $this->db->get_where('pasien.id_pasien', array('rekam_medis.id_pasien' => $id));
@@ -20,9 +21,9 @@ class Perawat_model extends CI_Model
 		$this->db->from('rekam_medis');
 		$this->db->join('pasien', 'pasien.id_pasien = rekam_medis.id_pasien');
         $this->db->join('dokter', 'dokter.id_dokter = rekam_medis.id_dokter');
-        $this->db->join('antrian', 'antrian.id_pasien = pasien.id_pasien');
-        $this->db->where('rekam_medis.diagnosis', 0);
-        $this->db->where('rekam_medis.tensi', 0);
+        $this->db->join('antrian', 'antrian.id_pasien = rekam_medis.id_pasien');
+        $this->db->where('rekam_medis.diagnosis', '');
+        $this->db->where('rekam_medis.tensi', '');
         $this->db->order_by('antrian.no_antri', 'asc');
         return $this->db->get()->result_array();
     }
@@ -72,7 +73,7 @@ class Perawat_model extends CI_Model
             'id_perawat' => $id_perawat[0]['id_perawat'],
             'tanggal' => $now
         );
-        $this->db->update('rekam_medis', $data);
+        $this->db-> where('id_pasien', $data['id_pasien'])->update('rekam_medis', $data);
         $this -> db -> where('no_antri',$this->input->post('no_antri')) -> delete('antrian');
     }
 

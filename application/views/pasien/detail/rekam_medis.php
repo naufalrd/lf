@@ -48,14 +48,14 @@
                 <th>Telp Dokter</th>
                 <td><?= $diagnosa['notelp_dokter'] ?></td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <th>Perawat yang menangani</th>
                 <td><?= $diagnosa['nama_perawat'] ?></td>
             </tr>
             <tr>
                 <th>Telp Perawat</th>
                 <td><?= $diagnosa['notelp_perawat'] ?></td>
-            </tr>
+            </tr> -->
             <?php endforeach ?>
         </table>
         <a href="<?= site_url("pasien") ?>" class="btn btn-primary">kembali</a>

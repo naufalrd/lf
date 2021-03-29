@@ -15,6 +15,8 @@ class Dokter_model extends CI_Model{
 		$this->db->join('pasien', 'pasien.id_pasien = rekam_medis.id_pasien');
         $this->db->join('dokter', 'dokter.id_dokter = rekam_medis.id_dokter');
         $this->db->where('rekam_medis.obat', '');
+        $this->db->where('rekam_medis.tensi !=', '');
+        $this->db->where('dokter.username_dokter', $this->session->userdata('username'));
         $this->db->order_by('rekam_medis.id_rekammedis', 'asc');
         return $this->db->get()->result_array();
     }
@@ -25,6 +27,7 @@ class Dokter_model extends CI_Model{
 		$this->db->join('pasien', 'pasien.id_pasien = rekam_medis.id_pasien');
         $this->db->join('dokter', 'dokter.id_dokter = rekam_medis.id_dokter');
         $this->db->where('rekam_medis.obat !=', '');
+        $this->db->where('rekam_medis.tensi !=', '');
         $this->db->order_by('rekam_medis.id_rekammedis', 'asc');
         return $this->db->get()->result_array();
     }
@@ -34,7 +37,6 @@ class Dokter_model extends CI_Model{
 		$this->db->from('rekam_medis');
 		$this->db->join('pasien', 'pasien.id_pasien = rekam_medis.id_pasien');
         $this->db->join('dokter', 'dokter.id_dokter = rekam_medis.id_dokter');
-        $this->db->join('perawat', 'perawat.id_perawat = rekam_medis.id_perawat');
         return $this -> db -> where('rekam_medis.id_rekammedis',$id) -> get() -> result_array();
     }
 
@@ -58,7 +60,7 @@ class Dokter_model extends CI_Model{
         $this -> db -> where('id_rekammedis',$id) -> update('rekam_medis',$data);
     }
 
-    public function update_data()
+    public function update_data($id)
     {
         $this->db->select('id_dokter');
         $this->db->from('dokter');
@@ -73,7 +75,7 @@ class Dokter_model extends CI_Model{
             'id_perawat' => $this->input->post('id_dokter'),
             'tanggal' => $this->input->post('tanggal')
         );
-        $this->db->update('rekam_medis', $data);
+        $this->db-> where('id_rekammedis',$id) -> update('rekam_medis', $data);
     }
 
     public function deletePostQuery($id){

@@ -21,6 +21,7 @@ class Pasien extends CI_Controller {
 		$id_pasien = $pasien[0]->id_pasien;
 		$data['antrian'] = $this->pasien_model->get_antrian($id_pasien);
 		$data['diagnosa'] = $this->pasien_model->get_diagnosa($id_pasien);
+		// var_dump($data);
 		$this->load->view('template/header.php');
 		$this->load->view('pasien/home.php', $data);
 		$this->load->view('template/footer.php');

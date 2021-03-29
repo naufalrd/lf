@@ -48,9 +48,9 @@ class Dokter extends CI_Controller {
 		redirect('dokter');
 	}
 
-	public function SendData()
+	public function SendData($id)
 	{
-		$this->dokter_model->update_data();
+		$this->dokter_model->update_data($id);
 		redirect('dokter');
 	}
 

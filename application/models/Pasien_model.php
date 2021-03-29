@@ -15,17 +15,21 @@ class Pasien_model extends CI_Model
     public function get_antrian($id_pasien){
         $this->db->select('*');
         $this->db->from('antrian');
-        $this->db->join('pasien',"'$id_pasien' = pasien.id_pasien");
+        $this->db->join('pasien',"pasien.id_pasien = antrian.id_pasien");
         $this->db->join('dokter','antrian.id_dokter = dokter.id_dokter');
+        $this->db->where('pasien.username_pasien', $this->session->userdata('username'));
         return $this->db->get()->result_array();
     }
 
     public function get_diagnosa($id_pasien){
         $this->db->select('*');
         $this->db->from('rekam_medis');
-        $this->db->join('pasien',"'$id_pasien' = pasien.id_pasien");
+        $this->db->join('pasien',"pasien.id_pasien = rekam_medis.id_pasien");
         $this->db->join('dokter','rekam_medis.id_dokter = dokter.id_dokter');
-        $this->db->join('perawat','rekam_medis.id_perawat = perawat.id_perawat');
+        $this->db->where('rekam_medis.tensi !=', '');
+        $this->db->where('rekam_medis.diagnosis !=', '');
+        $this->db->where('rekam_medis.obat !=', '');
+        $this->db->where('pasien.username_pasien', $this->session->userdata('username'));
         return $this->db->get()->result_array();
     }
 
@@ -58,7 +62,7 @@ class Pasien_model extends CI_Model
         $this->db->from('rekam_medis');
         $this->db->join('pasien',"rekam_medis.id_pasien = pasien.id_pasien");
         $this->db->join('dokter','rekam_medis.id_dokter = dokter.id_dokter');
-        $this->db->join('perawat','rekam_medis.id_perawat = perawat.id_perawat');
+        // $this->db->join('perawat','perawat.id_perawat = rekam_medis.id_perawat');
         $this->db->where('id_rekammedis', $id_rekammedis);
         return $this->db->get()->result_array();
     }
